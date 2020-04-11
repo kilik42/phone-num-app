@@ -42,43 +42,46 @@ public class PhoneNumberApp {
 			//area code cannot start in 0 or 9
 			// there can be 911 inthe phone
 		
-		
-		try{
-			if (phoneNum.length() != 10){
-				throw new TenDigitsException(phoneNum);
-			}
-			if ((phoneNum.substring(0,1).equals ("0")) || (phoneNum.substring(0,1).equals("9"))){
-				throw new AreaCodeException(phoneNum);
-			}
-			//checking for 911
-			for(int n = 0; n<phoneNum.length(); n++){
-				if(phoneNum.substring(n, n+1).equals("9")){
-					if (phoneNum.substring(n, n+ 3).equals("11")){
-						throw new EmergencyException(phoneNum);
+		for ( int i = 0; i<phoneNums.length; i++){
+			phoneNum = phoneNums[i];
+			try{
+				if (phoneNum.length() != 10){
+					throw new TenDigitsException(phoneNum);
+				}
+				if ((phoneNum.substring(0,1).equals ("0")) || (phoneNum.substring(0,1).equals("9"))){
+					throw new AreaCodeException(phoneNum);
+				}
+				//checking for 911
+				for(int n = 0; n<phoneNum.length(); n++){
+					if(phoneNum.substring(n, n+1).equals("9")){
+						if (phoneNum.substring(n, n+ 3).equals("11")){
+							throw new EmergencyException(phoneNum);
+						}
 					}
+					
 				}
 				
+				
+				System.out.println(phoneNum);
+			} catch(TenDigitsException e){
+				System.out.println("Error: phone number is not 10 digits");
+			} catch (AreaCodeException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Error: phone number has invalid area code");
+				e.printStackTrace();
+			} catch (EmergencyException e) {
+				// TODO Auto-generated catch block
+				System.out.println("ERROR: Invalid 911 found");
+				e.printStackTrace();
 			}
 			
-			
-			System.out.println(phoneNum);
-		} catch(TenDigitsException e){
-			System.out.println("Error: phone number is not 10 digits");
-		} catch (AreaCodeException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Error: phone number has invalid area code");
-			e.printStackTrace();
-		} catch (EmergencyException e) {
-			// TODO Auto-generated catch block
-			System.out.println("ERROR: Invalid 911 found");
-			e.printStackTrace();
+			finally{
+				
+			}
+
+		}
 		}
 		
-		finally{
-			
-		}
-
-	}
 
 }
 
