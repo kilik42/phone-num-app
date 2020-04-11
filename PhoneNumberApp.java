@@ -13,19 +13,29 @@ public class PhoneNumberApp {
 		
 		String filename = "";
 		File file = new File(filename);
+		String[] phoneNums = new String[9];
 		String phoneNum = null;
+		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
-			String phoneNumb = br.readLine();
-			br.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Error: file not found");
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		for (int i = 0; i<phoneNums.length; i++){
+			
+			
+				phoneNums[i] = br.readLine();
+				}	
+				br.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Error: file not found");
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		
+		
+	
 		
 		// valid number
 			//10 digits long
